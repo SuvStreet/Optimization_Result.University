@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router'
 
 import { useAuth } from '../../context'
@@ -44,7 +45,9 @@ export function MainLayout() {
           )}
         </div>
       </nav>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   )
 }
