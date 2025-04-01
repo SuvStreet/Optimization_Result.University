@@ -1,0 +1,36 @@
+.nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(49, 49, 49);
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  z-index: 1000;
+  width: 100%;
+}
+
+.nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+}
+
+.name {
+  color: #65e665;
+}
+
+.btnSignout {
+  background-color: transparent;
+  border: none;
+  color: #838383;
+  cursor: pointer;
+  margin-left: 5px;
+  padding: 0;
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+}

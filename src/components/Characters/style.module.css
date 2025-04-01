@@ -1,0 +1,19 @@
+.character{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.image{
+  border-radius: 10%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+span{
+  font-weight: bold;
+  margin-right: 5px;
+}

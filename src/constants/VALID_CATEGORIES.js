@@ -1,0 +1,1 @@
+export const VALID_CATEGORIES = ['characters', 'location', 'episode']
