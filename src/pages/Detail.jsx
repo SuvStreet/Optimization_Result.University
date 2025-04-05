@@ -32,7 +32,7 @@ export function Detail() {
     }
   }
 
-  const render = () => {
+  const renderCategoryComponent = () => {
     switch (category) {
       case 'characters':
         return <Characters data={data} />
@@ -47,5 +47,9 @@ export function Detail() {
 
   if (Object.keys(data).length === 0) return <p>Ой, тут пусто...</p>
 
-  return <>{isLoading ? <p>Загрузка данных...</p> : <>{render()}</>}</>
+  return (
+    <>
+      {isLoading ? <p>Загрузка данных...</p> : <>{renderCategoryComponent()}</>}
+    </>
+  )
 }
