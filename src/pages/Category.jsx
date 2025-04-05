@@ -24,7 +24,7 @@ export function Category() {
     setIsLoading(true)
 
     try {
-      const { data } = await axios.get(`${BASE_URL}/${category}`)
+      const { data: { results: data } } = await axios.get(`${BASE_URL}/${category}`)
 
       setData(data)
 
@@ -82,15 +82,13 @@ export function Category() {
           Сортировать по Я-А
         </button>
       </div>
-      {
-        <ul>
-          {data.map((item) => (
-            <li key={item.id}>
-              <Link to={item.id}>{item.name}</Link>
-            </li>
-          ))}
-        </ul>
-      }
+      <ul>
+        {data.map((item) => (
+          <li key={item.id}>
+            <Link to={item.id.toString()}>{item.name}</Link>
+          </li>
+        ))}
+      </ul>
     </>
   )
 }

@@ -12,6 +12,8 @@ export function Detail() {
   const [data, setData] = useState({})
   const navigate = useNavigate()
 
+  console.log('Detail :>> ')
+
   useEffect(() => {
     detailData()
   }, [id, category])
@@ -21,6 +23,8 @@ export function Detail() {
 
     try {
       const { data } = await axios.get(`${BASE_URL}/${category}/${id}`)
+
+      console.log('data :>> ', data)
 
       setData(data)
     } catch (error) {
@@ -34,7 +38,7 @@ export function Detail() {
 
   const renderCategoryComponent = () => {
     switch (category) {
-      case 'characters':
+      case 'character':
         return <Characters data={data} />
       case 'location':
         return <Location data={data} />
@@ -45,7 +49,7 @@ export function Detail() {
     }
   }
 
-  if (Object.keys(data).length === 0) return <p>Ой, тут пусто...</p>
+  if (Object.keys(data).length === 0 && !isLoading) return <p>Ой, тут пусто...</p>
 
   return (
     <>

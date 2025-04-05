@@ -25,7 +25,7 @@ export function MainLayout() {
             <NavLink to="/">Главная</NavLink>
           </li>
           <li>
-            <NavLink to="/characters">Персонажи</NavLink>
+            <NavLink to="/character">Персонажи</NavLink>
           </li>
           <li>
             <NavLink to="/location">Локации</NavLink>
