@@ -4,6 +4,8 @@ import { Route, Routes } from 'react-router'
 import { MainLayout, PrivateRoute } from './components'
 import { AuthProvider } from './context'
 
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
+
 import './App.css'
 
 const Home = lazy(() =>

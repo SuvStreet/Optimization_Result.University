@@ -3,6 +3,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router'
 
 import { useAuth } from '../../context'
 import { Button } from '../Button/Button'
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 
 import s from './style.module.css'
 
@@ -45,9 +46,11 @@ export function MainLayout() {
           )}
         </div>
       </nav>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Outlet />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
+      </ErrorBoundary>
     </>
   )
 }
