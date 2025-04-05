@@ -47,9 +47,9 @@ export function MainLayout() {
         </div>
       </nav>
       <ErrorBoundary>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Outlet />
-        </Suspense>
+          <Suspense fallback={<p>Загрузка страницы...</p>}>
+            <Outlet />
+          </Suspense>
       </ErrorBoundary>
     </>
   )

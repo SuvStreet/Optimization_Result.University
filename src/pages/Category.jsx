@@ -22,13 +22,19 @@ export function Category() {
 
   const categoryData = async () => {
     setIsLoading(true)
-    const { data } = await axios.get(`${BASE_URL}/${category}`)
 
-    setData(data)
-    setIsLoading(false)
+    try {
+      const { data } = await axios.get(`${BASE_URL}/${category}`)
 
-    if (sort) {
-      sortData(sort, data)
+      setData(data)
+
+      if (sort) {
+        sortData(sort, data)
+      }
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -47,37 +53,44 @@ export function Category() {
     }
   }
 
+  if (isLoading) {
+    return (
+      <>
+        <p>Загрузка данных...</p>
+      </>
+    )
+  }
+
+  if (data.length === 0 && !isLoading) {
+    return (
+      <>
+        <p>Ой, тут пусто...</p>
+      </>
+    )
+  }
+
   return (
     <>
-      {isLoading ? (
-        <p>Загрузка...</p>
-      ) : (
-        <>
-          <div>
-            <button
-              onClick={() => sortData('asc', data)}
-              disabled={sort === 'asc'}
-            >
-              Сортировать по А-Я
-            </button>
-            <button
-              onClick={() => sortData('desc', data)}
-              disabled={sort === 'desc'}
-            >
-              Сортировать по Я-А
-            </button>
-          </div>
-          {
-            <ul>
-              {data.map((item) => (
-                <li key={item.id}>
-                  <Link to={item.id}>{item.name}</Link>
-                </li>
-              ))}
-            </ul>
-          }
-        </>
-      )}
+      <div>
+        <button onClick={() => sortData('asc', data)} disabled={sort === 'asc'}>
+          Сортировать по А-Я
+        </button>
+        <button
+          onClick={() => sortData('desc', data)}
+          disabled={sort === 'desc'}
+        >
+          Сортировать по Я-А
+        </button>
+      </div>
+      {
+        <ul>
+          {data.map((item) => (
+            <li key={item.id}>
+              <Link to={item.id}>{item.name}</Link>
+            </li>
+          ))}
+        </ul>
+      }
     </>
   )
 }
