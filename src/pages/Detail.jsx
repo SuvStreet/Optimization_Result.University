@@ -12,8 +12,6 @@ export function Detail() {
   const [data, setData] = useState({})
   const navigate = useNavigate()
 
-  console.log('Detail :>> ')
-
   useEffect(() => {
     detailData()
   }, [id, category])
@@ -24,14 +22,12 @@ export function Detail() {
     try {
       const { data } = await axios.get(`${BASE_URL}/${category}/${id}`)
 
-      console.log('data :>> ', data)
-
       setData(data)
+      setIsLoading(false)
     } catch (error) {
       if (error.response?.status === 404) {
         return navigate(`/${category}`, { replace: true })
       }
-    } finally {
       setIsLoading(false)
     }
   }
