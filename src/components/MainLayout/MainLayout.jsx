@@ -1,7 +1,9 @@
+import { Suspense } from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router'
 
 import { useAuth } from '../../context'
 import { Button } from '../Button/Button'
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 
 import s from './style.module.css'
 
@@ -23,7 +25,7 @@ export function MainLayout() {
             <NavLink to="/">Главная</NavLink>
           </li>
           <li>
-            <NavLink to="/characters">Персонажи</NavLink>
+            <NavLink to="/character">Персонажи</NavLink>
           </li>
           <li>
             <NavLink to="/location">Локации</NavLink>
@@ -44,7 +46,11 @@ export function MainLayout() {
           )}
         </div>
       </nav>
-      <Outlet />
+      <ErrorBoundary>
+          <Suspense fallback={<p>Загрузка страницы...</p>}>
+            <Outlet />
+          </Suspense>
+      </ErrorBoundary>
     </>
   )
 }

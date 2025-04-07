@@ -1,1 +1,1 @@
-export const VALID_CATEGORIES = ['characters', 'location', 'episode']
+export const VALID_CATEGORIES = ['character', 'location', 'episode']

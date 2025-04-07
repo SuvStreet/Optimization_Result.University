@@ -47,7 +47,6 @@
   flex-direction: column;
 }
 
-
 ul {
   list-style: none;
   padding: 0;
@@ -56,4 +55,16 @@ ul {
 
 .content {
   flex: 1;
+}
+
+.activeSort {
+  color: #65e665;
+}
+
+.sortGroupButtons {
+  position: sticky;
+  top: 45px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
 }

@@ -17,22 +17,24 @@ export function Detail() {
   }, [id, category])
 
   const detailData = async () => {
+    setIsLoading(true)
+
     try {
       const { data } = await axios.get(`${BASE_URL}/${category}/${id}`)
 
       setData(data)
       setIsLoading(false)
     } catch (error) {
-      if (error.response.status === 404) {
-        setIsLoading(false)
+      if (error.response?.status === 404) {
         return navigate(`/${category}`, { replace: true })
       }
+      setIsLoading(false)
     }
   }
 
-  const render = () => {
+  const renderCategoryComponent = () => {
     switch (category) {
-      case 'characters':
+      case 'character':
         return <Characters data={data} />
       case 'location':
         return <Location data={data} />
@@ -43,5 +45,11 @@ export function Detail() {
     }
   }
 
-  return <>{isLoading ? <p>Загрузка...</p> : <>{render()}</>}</>
+  if (Object.keys(data).length === 0 && !isLoading) return <p>Ой, тут пусто...</p>
+
+  return (
+    <>
+      {isLoading ? <p>Загрузка данных...</p> : <>{renderCategoryComponent()}</>}
+    </>
+  )
 }
