@@ -73,7 +73,7 @@ export function Category() {
 
   return (
     <>
-      <div>
+      <div className="sortGroupButtons">
         <button
           className={sort === 'asc' ? 'activeSort' : ''}
           onClick={() => setSortData('asc', data)}
